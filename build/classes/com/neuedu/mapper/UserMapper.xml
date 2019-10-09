@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.neuedu.mapper.UserMapper">
+  <insert id="save" parameterType="user">
+  insert into t_user(username,password,phone,email) values(#{username},#{password},#{phone},#{email})
+  </insert>
+  <select id="getUserByUname" resultType="User">
+  select * from t_user where username=#{username}
+  </select>
+   <select id="getPassByUname" resultType="User">
+  select * from t_user where username=#{username} and password=#{password}
+  </select>
+    <select id="getcart" resultType="Cart">
+  select * from t_cart where username=#{username} 
+  </select>
+   <select id="getgoods" resultType="Goods">
+  select * from t_goods 
+  </select>
+  <delete id="deletecartbyid">
+  delete  from t_cart where goodsid=#{arg0} and username=#{arg1}
+  </delete>
+   <select id="getgoodsbyid" resultType="Goods">
+  select * from t_goods where goodsid=#{sid}
+  </select>
+  <insert id="savecart" parameterType="cart">
+  insert into t_cart(username,goodsname,goodsid,price,num,pic) values(#{username},#{goodsname},#{goodsid},#{price},#{num},#{pic})
+  </insert>
+  </mapper>
